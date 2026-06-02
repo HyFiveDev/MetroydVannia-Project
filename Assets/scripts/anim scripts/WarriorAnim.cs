@@ -6,7 +6,7 @@ public class Warrioranim : MonoBehaviour
     [SerializeField] MovingPlayer movingPlayer;
 
     Animator playerAnim;
-    private bool isRunning;
+
     private SpriteRenderer sprite;
     void Start()
     {
@@ -18,21 +18,19 @@ public class Warrioranim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (movingPlayer.moveX < 0 && sprite.flipX == false) sprite.flipX = true;
+        else if (movingPlayer.moveX > 0 && sprite.flipX == true) sprite.flipX = false;
 
-        if (movingPlayer.horizontalInput != 0) isRunning = true;
-        else if (movingPlayer.horizontalInput == 0) playerAnim.SetTrigger("Dashing");
-        else isRunning = false;
-
-        
-
-        if (movingPlayer.horizontalInput < 0 && sprite.flipX == false) sprite.flipX = true;
-        else if (movingPlayer.horizontalInput > 0 && sprite.flipX == true) sprite.flipX = false;
-
-            playerAnim.SetBool("Running", isRunning);
+            //playerAnim.SetBool("Running", isRunning);
  
             playerAnim.SetBool("Attacking", Input.GetKeyDown(KeyCode.Mouse0));
             playerAnim.SetBool("EspecialAttack", Input.GetKeyDown(KeyCode.Mouse1));
 
 
+    }
+
+    public void BoolAnim(string anim, bool condicao)
+    {
+        playerAnim.SetBool(anim, condicao);
     }
 }
