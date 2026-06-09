@@ -25,12 +25,7 @@ public class Warrioranim : MonoBehaviour
  
             playerAnim.SetBool("Attacking", Input.GetKeyDown(KeyCode.Mouse0));
             playerAnim.SetBool("EspecialAttack", Input.GetKeyDown(KeyCode.Mouse1));
+            playerAnim.SetBool("Running", movingPlayer.moveX != 0);
 
-
-    }
-
-    public void BoolAnim(string anim, bool condicao)
-    {
-        playerAnim.SetBool(anim, condicao);
     }
 }
